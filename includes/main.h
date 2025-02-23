@@ -1,11 +1,14 @@
 #ifndef MAIN_H
 # define MAIN_H
 
-void AddNewClient();
-void DeleteClient();
-void FindClient();
-void ShowClientsList();
-void ShowTotalBalances();
-void UpdateClient();
+#include "clsDate.h"
+#include "clsPerson.h"
+#include "clsString.h"
+#include "clsUtils.h"
+#include "clsInputValidate.h"
+#include "clsBankClient.h"
+#include "clsScreen.h"
+#include "clsMainScreen.h"
+
 
 #endif

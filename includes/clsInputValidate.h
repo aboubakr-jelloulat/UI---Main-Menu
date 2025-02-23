@@ -26,8 +26,6 @@ public:
 
 	}
 
-
-
 	static bool IsNumberBetween(double Number, double From, double To)
 	{
 		if (Number >= From && Number <= To)
@@ -57,6 +55,17 @@ public:
 		}
 
 		return false;
+	}
+
+	static short ReadShortNumber(string ErrorMessage = "Invalid Number, Enter again\n")
+	{
+		short Number;
+		while (!(cin >> Number)) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << ErrorMessage;
+		}
+		return Number;
 	}
 
 	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again\n")
@@ -137,5 +146,17 @@ public:
 		// Usage of std::ws will extract allthe whitespace character
 		getline(cin >> ws, S1);
 		return S1;
+	}
+
+	static short ReadShortNumberBetween(short From, short To, string ErrorMessage = "Number is not within range, Enter again:\n")
+	{
+		int Number = ReadShortNumber();
+
+		while (!IsNumberBetween((short)Number, From, To))
+		{
+			cout << ErrorMessage;
+			Number = ReadShortNumber();
+		}
+		return Number;
 	}
 };
