@@ -9,6 +9,7 @@
 #include "clsBankClient.h"
 #include "clsScreen.h"
 #include "clsMainScreen.h"
+#include "clsClientScreen.h"
 
 
 #endif

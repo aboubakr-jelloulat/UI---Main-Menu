@@ -37,4 +37,6 @@ fclean: clean
 
 re: fclean all
 
+practice : all clean
+
 .PHONY : clean
