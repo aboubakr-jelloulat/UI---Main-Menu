@@ -27,8 +27,7 @@ public:
 
 		_DrawScreenHeader(Title, SubTitle);
 
-		cout << setw(8) << left << "" << "\n\t________________________________________________________________________________________________\n"
-			 << endl;
+		cout << setw(8) << left << "" << "\n\t________________________________________________________________________________________________\n" << endl;
 
 		cout << setw(8) << left << "" << "| " << left << setw(15) << "Accout Number";
 		cout << "| " << left << setw(20) << "Client Name";
@@ -36,8 +35,7 @@ public:
 		cout << "| " << left << setw(20) << "Email";
 		cout << "| " << left << setw(10) << "Pin Code";
 		cout << "| " << left << setw(12) << "Balance";
-		cout << setw(8) << left << "" << "\n\t________________________________________________________________________________________________\n"
-			 << endl;
+		cout << setw(8) << left << "" << "\n\t________________________________________________________________________________________________\n" << endl;
 
 		if (vClients.size() == 0)
 			cout << "\t\t\t\tNo Clients Available In the System!";

@@ -16,7 +16,7 @@ SRCS 	= $(wildcard $(SRC_DIR)/*.cpp) Main.cpp
 OBJS 	= $(SRCS:.cpp=.o)
 HEADERS = $(wildcard $(INC_DIR)/*.h)
 
-all: $(NAME)
+all: $(NAME) 
 
 $(NAME): $(OBJS)
 	@echo "$(BLUE)🎯 Compiling $(NAME)...$(RESET)"
