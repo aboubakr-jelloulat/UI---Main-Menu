@@ -35,8 +35,11 @@ fclean: clean
 	@echo "$(RED)❌ Removing $(NAME)...$(RESET)"
 	@rm -f $(NAME)
 
-re: fclean all
+clear :
+	clear
 
-practice : all clean
+re: fclean all 
 
-.PHONY : clean
+practice : all clean  clear
+
+.PHONY : clean clear
