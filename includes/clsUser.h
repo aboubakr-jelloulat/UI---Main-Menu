@@ -16,6 +16,7 @@ private:
 		UpdateMode = 1,
 		AddNewMode = 2
 	};
+
 	enMode _Mode;
 	string _UserName;
 	string _Password;
@@ -141,6 +142,18 @@ private:
 	}
 
 public:
+	enum enPermissions
+	{
+		eAll = -1,
+		pListClients = 1,
+		pAddNewClient = 2,
+		pDeleteClient = 4,
+		pUpdateClients = 8,
+		pFindClient = 16,
+		pTranactions = 32,
+		pManageUsers = 64
+	};
+	
 	clsUser(enMode Mode, string FirstName, string LastName,
 			string Email, string Phone, string UserName, string Password,
 			int Permissions) : clsPerson(FirstName, LastName, Email, Phone)
@@ -268,8 +281,6 @@ public:
 		{
 			_Update();
 			return enSaveResults::svSucceeded;
-
-			break;
 		}
 
 		case enMode::AddNewMode:
@@ -286,7 +297,6 @@ public:
 				_Mode = enMode::UpdateMode;
 				return enSaveResults::svSucceeded;
 			}
-
 			break;
 		}
 		}
