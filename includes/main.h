@@ -10,7 +10,7 @@
 #include "clsScreen.h"
 #include "clsMainScreen.h"
 #include "clsClientScreen.h"
-//#include "clsAddNewClientScreen.h"
+#include "clsLoginScreen.h"
 
 
 #endif

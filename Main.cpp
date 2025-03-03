@@ -3,8 +3,7 @@
 
 int main(void)
 {
-
-	clsMainScreen::ShowMainMenue();
+	clsLoginScreen::ShowLoginScreen();
 
     return 0;
 }
