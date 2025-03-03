@@ -12,14 +12,25 @@ private :
   static  void _Login()
     {
         bool LoginFaild = false;
+		short FaildLoginCount = 0;
 
         string Username, Password;
         do
         {
             if (LoginFaild)
 			{
-                cout << "\nInvlaid Username/Password! 🆘 try again ...\n\n";
+				FaildLoginCount++;
+
+                cout << "\nInvlaid Username/Password!";
+                cout << "\nYou have " << (3-FaildLoginCount) << " Trial(s) to login.\n\n";   
+				
 			}
+
+			if (FaildLoginCount == 3)
+            {
+                cout << "\nYour are Locked after 3 faild trails \n\n";
+                return false;
+            }
 
             cout << "Enter Username? ";  cin >> Username;
 
@@ -33,6 +44,7 @@ private :
 
         clsMainScreen::ShowMainMenue();
     }
+	return true;
 
 public:
 
