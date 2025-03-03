@@ -3,6 +3,7 @@
 #include "clsScreen.h"
 #include "clsUser.h"
 #include "clsMainScreen.h"
+
 class clsLoginScreen :protected clsScreen
 {
 
@@ -16,7 +17,9 @@ private :
         do
         {
             if (LoginFaild)
-                cout << "\nInvlaid Username/Password!\n\n";
+			{
+                cout << "\nInvlaid Username/Password! 🆘 try again ...\n\n";
+			}
 
             cout << "Enter Username? ";  cin >> Username;
 
