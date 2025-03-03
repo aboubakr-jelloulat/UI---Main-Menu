@@ -16,7 +16,8 @@ protected:
 			cout << "\n\t\t\t\t\t  " << SubTitle;
 		}
 
-		
+		cout << "\n\t\t\t\t\t 👤 User: " << CurrentUser.UserName << endl;
+        cout << "\n\t\t\t\t\t⏰ Date: " << clsDate::DateToString(clsDate()) << endl;
 
 		cout << "\n\t\t\t\t\t______________________________________\n\n";
 	}
