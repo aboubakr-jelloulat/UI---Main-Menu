@@ -1098,24 +1098,16 @@ public:
 		return CompareDates(*this, Date2);
 	}
 
-	static string GetSystemDateTimeString()
-	{
-		time_t t = time(0);
-		tm* now = localtime(&t);
+	static string GetCurrentTime() {
+        auto now = chrono::system_clock::now();
+        time_t currentTime = chrono::system_clock::to_time_t(now);
+        tm *localTime = localtime(&currentTime);
 
-		short Day, Month, Year,Hour,Minute,Second;
+        stringstream timeStream;
+        timeStream << setw(2) << setfill('0') << localTime->tm_hour << ":"
+                   << setw(2) << setfill('0') << localTime->tm_min << ":"
+                   << setw(2) << setfill('0') << localTime->tm_sec;
 
-		Year = now->tm_year + 1900;
-		Month = now->tm_mon + 1;
-		Day = now->tm_mday;
-		Hour = now->tm_hour;
-		Minute = now->tm_min;
-		Second = now->tm_sec;
-
-		return (to_string(Day) + "/" + to_string(Month) + "/"
-			+ to_string(Year) + " - "
-			+ to_string(Hour) + ":" + to_string(Minute)
-			+ ":" + to_string(Second));
-
-	}
+        return timeStream.str();
+    }
 };
