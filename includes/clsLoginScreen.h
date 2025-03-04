@@ -11,25 +11,6 @@ class clsLoginScreen :protected clsScreen
 
 private :
 
-	
-
-	static void _RegisterUsersLogin()
-	{
-		string seperator = "#//#";
-		string line = clsDate::DateToString(clsDate()) + " - " + clsDate::GetCurrentTime() + seperator + CurrentUser.UserName + seperator + CurrentUser.Password + seperator + to_string(CurrentUser.Permissions);
-
-		fstream MyFile;
-		MyFile.open("Logfile.txt", ios::out | ios::app);
-		if (MyFile.is_open())
-		{
-
-			MyFile << line << endl;
-
-			MyFile.close();
-		}
-
-	}
-
   	static  bool _Login()
     {
         bool LoginFaild = false;
@@ -62,7 +43,7 @@ private :
 
         } while (LoginFaild);
 
-		_RegisterUsersLogin();
+		CurrentUser.RegisterLogIn();
         clsMainScreen::ShowMainMenue();
 		return true ;
     }

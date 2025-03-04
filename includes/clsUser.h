@@ -118,7 +118,6 @@ private:
 
 	void _AddNew()
 	{
-
 		_AddDataLineToFile(_ConverUserObjectToLine(*this));
 	}
 
@@ -140,6 +139,16 @@ private:
 	{
 		return clsUser(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
+
+	string _PrepareLogInRecord( string Seperator = "#//#")
+    {
+        string LoginRecord = "";
+        LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
+        LoginRecord += UserName + Seperator;
+        LoginRecord += Password + Seperator;
+        LoginRecord += to_string(Permissions);
+        return LoginRecord;
+    }
 
 public:
 	enum enPermissions
@@ -349,6 +358,22 @@ public:
             return true;
         else
             return false;
+    }
+
+	void RegisterLogIn()
+    {
+        string stDataLine = _PrepareLogInRecord();
+
+        fstream MyFile;
+        MyFile.open("Logfile.txt", ios::out | ios::app);
+
+        if (MyFile.is_open())
+        {
+            MyFile << stDataLine << endl;
+
+            MyFile.close();
+        }
+
     }
 
 };
