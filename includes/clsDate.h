@@ -2,6 +2,10 @@
 #pragma once
 
 #include "clsString.h"
+#include <chrono>
+#include <sstream>
+#include <iomanip>
+
 
 using namespace std;
 
@@ -17,7 +21,7 @@ public:
 	clsDate()
 	{
 		time_t t = time(0);
-		tm* now = localtime(&t);
+		tm *now = localtime(&t);
 		_Day = now->tm_mday;
 		_Month = now->tm_mon + 1;
 		_Year = now->tm_year + 1900;
@@ -93,7 +97,7 @@ public:
 	{
 		// system date
 		time_t t = time(0);
-		tm* now = localtime(&t);
+		tm *now = localtime(&t);
 
 		short Day, Month, Year;
 
@@ -210,7 +214,7 @@ public:
 		if (Month < 1 || Month > 12)
 			return 0;
 
-		int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		int days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		return (Month == 2) ? (isLeapYear(Year) ? 29 : 28) : days[Month - 1];
 	}
 
@@ -267,7 +271,7 @@ public:
 
 	static string DayShortName(short DayOfWeekOrder)
 	{
-		string arrDayNames[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+		string arrDayNames[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
 		return arrDayNames[DayOfWeekOrder];
 	}
@@ -275,7 +279,7 @@ public:
 	static string DayShortName(short Day, short Month, short Year)
 	{
 
-		string arrDayNames[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+		string arrDayNames[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
 		return arrDayNames[DayOfWeekOrder(Day, Month, Year)];
 	}
@@ -283,17 +287,17 @@ public:
 	string DayShortName()
 	{
 
-		string arrDayNames[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+		string arrDayNames[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
 		return arrDayNames[DayOfWeekOrder(_Day, _Month, _Year)];
 	}
 
 	static string MonthShortName(short MonthNumber)
 	{
-		string Months[12] = { "Jan", "Feb", "Mar",
+		string Months[12] = {"Jan", "Feb", "Mar",
 							 "Apr", "May", "Jun",
 							 "Jul", "Aug", "Sep",
-							 "Oct", "Nov", "Dec" };
+							 "Oct", "Nov", "Dec"};
 
 		return (Months[MonthNumber - 1]);
 	}
@@ -315,7 +319,7 @@ public:
 
 		// Print the current month name
 		printf("\n  _______________%s_______________\n\n",
-			MonthShortName(Month).c_str());
+			   MonthShortName(Month).c_str());
 
 		// Print the columns
 		printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n");
@@ -530,7 +534,7 @@ public:
 		*this = AddOneDay(*this);
 	}
 
-	static void SwapDates(clsDate& Date1, clsDate& Date2)
+	static void SwapDates(clsDate &Date1, clsDate &Date2)
 	{
 
 		clsDate TempDate;
@@ -572,7 +576,7 @@ public:
 	}
 	// above no need to have nonstatic function for the object because it does not depend on any data from it.
 
-	static clsDate IncreaseDateByOneWeek(clsDate& Date)
+	static clsDate IncreaseDateByOneWeek(clsDate &Date)
 	{
 
 		for (int i = 1; i <= 7; i++)
@@ -588,7 +592,7 @@ public:
 		IncreaseDateByOneWeek(*this);
 	}
 
-	clsDate IncreaseDateByXWeeks(short Weeks, clsDate& Date)
+	clsDate IncreaseDateByXWeeks(short Weeks, clsDate &Date)
 	{
 
 		for (short i = 1; i <= Weeks; i++)
@@ -603,7 +607,7 @@ public:
 		IncreaseDateByXWeeks(Weeks, *this);
 	}
 
-	clsDate IncreaseDateByOneMonth(clsDate& Date)
+	clsDate IncreaseDateByOneMonth(clsDate &Date)
 	{
 
 		if (Date.Month == 12)
@@ -634,7 +638,7 @@ public:
 		IncreaseDateByOneMonth(*this);
 	}
 
-	clsDate IncreaseDateByXDays(short Days, clsDate& Date)
+	clsDate IncreaseDateByXDays(short Days, clsDate &Date)
 	{
 
 		for (short i = 1; i <= Days; i++)
@@ -650,7 +654,7 @@ public:
 		IncreaseDateByXDays(Days, *this);
 	}
 
-	clsDate IncreaseDateByXMonths(short Months, clsDate& Date)
+	clsDate IncreaseDateByXMonths(short Months, clsDate &Date)
 	{
 
 		for (short i = 1; i <= Months; i++)
@@ -665,7 +669,7 @@ public:
 		IncreaseDateByXMonths(Months, *this);
 	}
 
-	static clsDate IncreaseDateByOneYear(clsDate& Date)
+	static clsDate IncreaseDateByOneYear(clsDate &Date)
 	{
 		Date.Year++;
 		return Date;
@@ -676,7 +680,7 @@ public:
 		IncreaseDateByOneYear(*this);
 	}
 
-	clsDate IncreaseDateByXYears(short Years, clsDate& Date)
+	clsDate IncreaseDateByXYears(short Years, clsDate &Date)
 	{
 		Date.Year += Years;
 		return Date;
@@ -687,7 +691,7 @@ public:
 		IncreaseDateByXYears(Years);
 	}
 
-	clsDate IncreaseDateByOneDecade(clsDate& Date)
+	clsDate IncreaseDateByOneDecade(clsDate &Date)
 	{
 		// Period of 10 years
 		Date.Year += 10;
@@ -699,7 +703,7 @@ public:
 		IncreaseDateByOneDecade(*this);
 	}
 
-	clsDate IncreaseDateByXDecades(short Decade, clsDate& Date)
+	clsDate IncreaseDateByXDecades(short Decade, clsDate &Date)
 	{
 		Date.Year += Decade * 10;
 		return Date;
@@ -710,7 +714,7 @@ public:
 		IncreaseDateByXDecades(Decade, *this);
 	}
 
-	clsDate IncreaseDateByOneCentury(clsDate& Date)
+	clsDate IncreaseDateByOneCentury(clsDate &Date)
 	{
 		// Period of 100 years
 		Date.Year += 100;
@@ -722,7 +726,7 @@ public:
 		IncreaseDateByOneCentury(*this);
 	}
 
-	clsDate IncreaseDateByOneMillennium(clsDate& Date)
+	clsDate IncreaseDateByOneMillennium(clsDate &Date)
 	{
 		// Period of 1000 years
 		Date.Year += 1000;
@@ -764,7 +768,7 @@ public:
 		DecreaseDateByOneDay(*this);
 	}
 
-	static clsDate DecreaseDateByOneWeek(clsDate& Date)
+	static clsDate DecreaseDateByOneWeek(clsDate &Date)
 	{
 
 		for (int i = 1; i <= 7; i++)
@@ -780,7 +784,7 @@ public:
 		DecreaseDateByOneWeek(*this);
 	}
 
-	static clsDate DecreaseDateByXWeeks(short Weeks, clsDate& Date)
+	static clsDate DecreaseDateByXWeeks(short Weeks, clsDate &Date)
 	{
 
 		for (short i = 1; i <= Weeks; i++)
@@ -795,7 +799,7 @@ public:
 		DecreaseDateByXWeeks(Weeks, *this);
 	}
 
-	static clsDate DecreaseDateByOneMonth(clsDate& Date)
+	static clsDate DecreaseDateByOneMonth(clsDate &Date)
 	{
 
 		if (Date.Month == 1)
@@ -823,7 +827,7 @@ public:
 		DecreaseDateByOneMonth(*this);
 	}
 
-	static clsDate DecreaseDateByXDays(short Days, clsDate& Date)
+	static clsDate DecreaseDateByXDays(short Days, clsDate &Date)
 	{
 
 		for (short i = 1; i <= Days; i++)
@@ -838,7 +842,7 @@ public:
 		DecreaseDateByXDays(Days, *this);
 	}
 
-	static clsDate DecreaseDateByXMonths(short Months, clsDate& Date)
+	static clsDate DecreaseDateByXMonths(short Months, clsDate &Date)
 	{
 
 		for (short i = 1; i <= Months; i++)
@@ -853,7 +857,7 @@ public:
 		DecreaseDateByXMonths(Months, *this);
 	}
 
-	static clsDate DecreaseDateByOneYear(clsDate& Date)
+	static clsDate DecreaseDateByOneYear(clsDate &Date)
 	{
 
 		Date.Year--;
@@ -865,7 +869,7 @@ public:
 		DecreaseDateByOneYear(*this);
 	}
 
-	static clsDate DecreaseDateByXYears(short Years, clsDate& Date)
+	static clsDate DecreaseDateByXYears(short Years, clsDate &Date)
 	{
 
 		Date.Year -= Years;
@@ -877,7 +881,7 @@ public:
 		DecreaseDateByXYears(Years, *this);
 	}
 
-	static clsDate DecreaseDateByOneDecade(clsDate& Date)
+	static clsDate DecreaseDateByOneDecade(clsDate &Date)
 	{
 		// Period of 10 years
 		Date.Year -= 10;
@@ -889,7 +893,7 @@ public:
 		DecreaseDateByOneDecade(*this);
 	}
 
-	static clsDate DecreaseDateByXDecades(short Decades, clsDate& Date)
+	static clsDate DecreaseDateByXDecades(short Decades, clsDate &Date)
 	{
 
 		Date.Year -= Decades * 10;
@@ -901,7 +905,7 @@ public:
 		DecreaseDateByXDecades(Decades, *this);
 	}
 
-	static clsDate DecreaseDateByOneCentury(clsDate& Date)
+	static clsDate DecreaseDateByOneCentury(clsDate &Date)
 	{
 		// Period of 100 years
 		Date.Year -= 100;
@@ -913,7 +917,7 @@ public:
 		DecreaseDateByOneCentury(*this);
 	}
 
-	static clsDate DecreaseDateByOneMillennium(clsDate& Date)
+	static clsDate DecreaseDateByOneMillennium(clsDate &Date)
 	{
 		// Period of 1000 years
 		Date.Year -= 1000;
@@ -1085,12 +1089,33 @@ public:
 		/* if (IsDate1AfterDate2(Date1,Date2))
 			 return enDateCompare::After;*/
 
-			 // this is faster
+		// this is faster
 		return enDateCompare::After;
 	}
 
 	enDateCompare CompareDates(clsDate Date2)
 	{
 		return CompareDates(*this, Date2);
+	}
+
+	static string GetSystemDateTimeString()
+	{
+		time_t t = time(0);
+		tm* now = localtime(&t);
+
+		short Day, Month, Year,Hour,Minute,Second;
+
+		Year = now->tm_year + 1900;
+		Month = now->tm_mon + 1;
+		Day = now->tm_mday;
+		Hour = now->tm_hour;
+		Minute = now->tm_min;
+		Second = now->tm_sec;
+
+		return (to_string(Day) + "/" + to_string(Month) + "/"
+			+ to_string(Year) + " - "
+			+ to_string(Hour) + ":" + to_string(Minute)
+			+ ":" + to_string(Second));
+
 	}
 };

@@ -3,11 +3,32 @@
 #include "clsScreen.h"
 #include "clsUser.h"
 #include "clsMainScreen.h"
+#include "clsDate.h"
+#include <fstream>
 
 class clsLoginScreen :protected clsScreen
 {
 
 private :
+
+	
+
+	static void _RegisterUsersLogin()
+	{
+		string seperator = "#//#";
+		string line = clsDate::DateToString(clsDate()) + " - " + clsDate::GetCurrentTime() + seperator + CurrentUser.UserName + seperator + CurrentUser.Password + seperator + to_string(CurrentUser.Permissions);
+
+		fstream MyFile;
+		MyFile.open("Logfile.txt", ios::out | ios::app);
+		if (MyFile.is_open())
+		{
+
+			MyFile << line << endl;
+
+			MyFile.close();
+		}
+
+	}
 
   	static  bool _Login()
     {
@@ -41,6 +62,7 @@ private :
 
         } while (LoginFaild);
 
+		_RegisterUsersLogin();
         clsMainScreen::ShowMainMenue();
 		return true ;
     }
