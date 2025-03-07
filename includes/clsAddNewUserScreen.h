@@ -51,8 +51,7 @@ private:
 		int Permissions = 0;
 		char Answer = 'n';
 
-		cout << "\nDo you want to give full access? y/n? ";
-		cin >> Answer;
+		cout << "\nDo you want to give full access? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			return -1;
@@ -60,54 +59,54 @@ private:
 
 		cout << "\nDo you want to give access to : \n ";
 
-		cout << "\nShow Client List? y/n? ";
-		cin >> Answer;
+		cout << "\nShow Client List? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pListClients;
 		}
 
-		cout << "\nAdd New Client? y/n? ";
-		cin >> Answer;
+		cout << "\nAdd New Client? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pAddNewClient;
 		}
 
-		cout << "\nDelete Client? y/n? ";
-		cin >> Answer;
+		cout << "\nDelete Client? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pDeleteClient;
 		}
 
-		cout << "\nUpdate Client? y/n? ";
-		cin >> Answer;
+		cout << "\nUpdate Client? y/n? ";   cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pUpdateClients;
 		}
 
-		cout << "\nFind Client? y/n? ";
-		cin >> Answer;
+		cout << "\nFind Client? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pFindClient;
 		}
 
-		cout << "\nTransactions? y/n? ";
-		cin >> Answer;
+		cout << "\nTransactions? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pTranactions;
 		}
 
-		cout << "\nManage Users? y/n? ";
-		cin >> Answer;
+		cout << "\nManage Users? y/n? ";  cin >> Answer;
 		if (Answer == 'y' || Answer == 'Y')
 		{
 			Permissions += clsUser::enPermissions::pManageUsers;
 		}
+
+		cout << "\nShow Login Register? y/n? ";   cin >> Answer;
+        if (Answer == 'y' || Answer == 'Y')
+        {
+            Permissions += clsUser::enPermissions::pShowLogInRegister;
+        }
+
 
 		return Permissions;
 	}

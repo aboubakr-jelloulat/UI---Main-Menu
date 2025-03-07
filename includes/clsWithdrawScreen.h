@@ -26,7 +26,7 @@ private:
 	static string _ReadAccountNumber()
 	{
 		string AccountNumber = "";
-		cout << "\nPlease enter AccountNumber? ";
+		cout << "\nPlease enter Account Number? ";
 		cin >> AccountNumber;
 		return AccountNumber;
 	}

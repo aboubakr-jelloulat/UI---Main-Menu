@@ -33,7 +33,7 @@ private:
 
 	static void _GoBackToManageUsersMenue()
 	{
-		cout << setw(37) << left << "" << "\n\tPress any key to go back to Main Menue...\n";
+		cout << setw(37) << left << "" << "\n\tPress any key to go back to Main Menue... ↩️\n";
 		cin.ignore(); // Ignore previous input
 		cin.get();	  // Wait for user input before clearing
 		ShowManageUsersMenue();
